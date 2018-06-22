@@ -70,16 +70,6 @@ EOF
 
 # Start adeptio daemon, wait for wallet creation and get the masterprivkey and addr where to send 10 000 ADE //
 /usr/bin/adeptiod --daemon &&
-echo "" ; echo "Please wait for few minutes..."
-sleep 120 &
-PID=$!
-i=1
-sp="/-\|"
-echo -n ' '
-while [ -d /proc/$PID ]
-do
-  printf "\b${sp:i++%${#sp}:1}"
-done
 masternodeaddr=$(/usr/bin/adeptio-cli getnewaddress)
 masternodeprivkey=$(/usr/bin/adeptio-cli masternode genkey)
 echo ""
